@@ -1,0 +1,11 @@
+order: [1, 7, 8, 2, 15, 3, 0, 6, 11, 5, 4, 14, 10, 13, 12, 9]  # order of channels
+crop_x: 0.3  # crop before generating mask for efficiency
+crop_y: 0.3
+pattern_size: [4, 4]  # chessboard pattern is 4x4
+image_size: [2560, 1920]  # reolink image resolution
+focal_length: 0.174  # f_x = f_y = 0.174 units = 2.26mm (1 unit is defined as the length of a checker square)
+# Coordinates of columns for each side from left to right
++z: [-1.5, -0.5, 0.5, 1.5]  # x coordinates on z sides
+-z: [1.5, 0.5, -0.5, -1.5]
++x: [1.5, 0.5, -0.5, -1.5]  # z coordinates on x sides
+-x: [-1.5, -0.5, 0.5, 1.5]

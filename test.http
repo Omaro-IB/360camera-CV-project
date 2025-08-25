@@ -1,0 +1,37 @@
+POST http://localhost:5000/cgi/settings/set
+Content-Type: application/json
+
+{
+  "camera_ip": "192.168.1.3"
+}
+
+###
+
+POST http://localhost:5000/cgi/redetect_chessboard
+Content-Type: application/x-www-form-urlencoded
+
+image_number = 0
+
+###
+
+POST http://localhost:5000/cgi/calibrate
+Content-Type: application/x-www-form-urlencoded
+
+image_numbers = "0,1,2,3"
+side = "+x"
+
+###
+
+POST http://localhost:5000/cgi/retake_photo
+Content-Type: application/x-www-form-urlencoded
+
+image_number = 1
+
+###
+
+POST http://localhost:5000/cgi/timestamp/set
+Content-Type: application/x-www-form-urlencoded
+
+timestamp = 2025-03-13T00-40-59
+
+###

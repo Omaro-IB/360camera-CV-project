@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Control Console</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Side-by-Side Layout -->
+        <div id="left">
+            <h1>Camera Control</h1>
+            <div class="header">
+                <div class="flex-container">
+                    <div class="flex-child">
+                        <input type="text" id="ip" placeholder="IP Address (x.x.x.x)">
+                    </div>
+                    <div class="flex-child">
+                        <input type="text" id="username" placeholder="Username">
+                    </div>
+                    <div class="flex-child">
+                        <input type="text" id="password" placeholder="Password">
+                    </div>
+                    <div class="flex-child">
+                        <button class="login-btn" onclick="login()">Login</button>
+                    </div>
+                </div>
+            </div>
+            <div class="global-actions">
+                <button onclick="reload()">Reload</button>
+                <button onclick="takeAllPhotos()">Take All Photos</button>
+                <button onclick="detectAllChessboards()">Detect All Chessboards</button>
+            </div>
+            <div class="camera-grid">
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 0" class="camera-img" id="img-0">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-0">0</button>
+                        <button onclick="retakePhoto(0)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(0)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 1" class="camera-img" id="img-1">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-1">1</button>
+                        <button onclick="retakePhoto(1)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(1)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 2" class="camera-img" id="img-2">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-2">2</button>
+                        <button onclick="retakePhoto(2)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(2)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 3" class="camera-img" id="img-3">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-3">3</button>
+                        <button onclick="retakePhoto(3)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(3)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 4" class="camera-img" id="img-4">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-4">4</button>
+                        <button onclick="retakePhoto(4)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(4)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 5" class="camera-img" id="img-5">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-5">5</button>
+                        <button onclick="retakePhoto(5)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(5)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 6" class="camera-img" id="img-6">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-6">6</button>
+                        <button onclick="retakePhoto(6)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(6)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 7" class="camera-img" id="img-7">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-7">7</button>
+                        <button onclick="retakePhoto(7)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(7)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 8" class="camera-img" id="img-8">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-8">8</button>
+                        <button onclick="retakePhoto(8)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(8)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 9" class="camera-img" id="img-9">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-9">9</button>
+                        <button onclick="retakePhoto(9)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(9)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 10" class="camera-img" id="img-10">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-10">10</button>
+                        <button onclick="retakePhoto(10)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(10)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 11" class="camera-img" id="img-11">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-11">11</button>
+                        <button onclick="retakePhoto(11)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(11)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 12" class="camera-img" id="img-12">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-12">12</button>
+                        <button onclick="retakePhoto(12)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(12)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 13" class="camera-img" id="img-13">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-13">13</button>
+                        <button onclick="retakePhoto(13)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(13)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 14" class="camera-img" id="img-14">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-14">14</button>
+                        <button onclick="retakePhoto(14)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(14)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="/static/noimage.png" alt="Camera Image 15" class="camera-img" id="img-15">
+                    <div class="flex-container">
+                        <button class="flex-child-text" id="txt-15">15</button>
+                        <button onclick="retakePhoto(15)" class="flex-child-button">Retake</button>
+                        <button onclick="redetectPhoto(15)" class="flex-child-button">Redetect</button>
+                    </div>
+                </div>
+                
+            </div>
+
+            <h1>Calibration</h1>
+            <label for="calibrate-side-dropdown">Pick a side:</label>
+            <select id="calibrate-side-dropdown">
+                <option value="+x">+X</option>
+                <option value="-x">-X</option>
+                <option value="+z">+Z</option>
+                <option value="-z">-Z</option>
+            </select>
+            <input type="text" id="calibrate-image-numbers" placeholder="Enter image numbers corresponding with the side (comma-separated integers 0-15)">
+
+            <button onclick="calibrate()">Calibrate!</button>
+        </div>
+
+        <div id="largeImage">
+            <h1>Image View</h1>
+            <p>Hover over an image for a larger view</p>
+            <img id="largeImageImage" src="" style="display:none;">
+        </div>
+
+        <div id="right">
+            <h1>Settings</h1>
+            <button class="reset-btn" onclick="resetSettings()">Reset Settings</button>
+            <button class="reset-btn" onclick="saveSettings()">Save Settings</button>
+
+            <div id="settings">
+                <div class="capture-settings">
+                    <h3>Capture Settings</h3>
+                    <label for="image-order">Image Order:</label>
+                    <input type="text" id="image-order" placeholder="Enter order (16 comma-separated integers 0-15)">
+                </div>
+
+                <div class="pattern-settings">
+                    <h3>Chessboard Detection Settings</h3>
+                    <label for="crop-x">Crop Percentage (X):</label>
+                    <input type="number" id="crop-x" step="0.05" placeholder="Enter crop x% (float 0-1)">
+                    <label for="crop-y">Crop Percentage (Y):</label>
+                    <input type="number" id="crop-y" step="0.05" placeholder="Enter crop y% (float 0-1)">
+                    <label>Pattern Size (Rows x Columns):</label>
+                    <div class="flex-container">
+                        <input type="number" class="flex-child" id="pattern-x" placeholder="Enter # of rows (integer)">
+                        <input type="number" class="flex-child" id="pattern-y" placeholder="Enter # of columns (integer)">
+                    </div>
+                </div>
+
+                <div class="calibration-settings">
+                    <h3>Calibration Settings</h3>
+                    <label for="resolution">Resolution:</label>
+                    <input type="text" id="resolution" placeholder="Enter resolution (width,height)">
+                    <label for="focal-length">Focal Length:</label>
+                    <input type="number" id="focal-length" step="0.001" placeholder="Enter focal length (float)">
+                </div>
+
+                <div class="coordinates-settings">
+                    <p>Column Coordinates:</p>
+                    <div></div>
+                    <div class="flex-container">
+                        <label class="flex-child" for="plus-x">+X:</label>
+                        <input class="flex-child" type="text" id="plus-x" placeholder="Enter comma-separated coordinates">
+                    </div>
+                    <div class="flex-container">
+                        <label class="flex-child" for="minus-x">-X:</label>
+                        <input class="flex-child" type="text" id="minus-x" placeholder="Enter comma-separated coordinates">
+                    </div>
+                    <div class="flex-container">
+                        <label class="flex-child" for="plus-z">+Z:</label>
+                        <input class="flex-child" type="text" id="plus-z" placeholder="Enter comma-separated coordinates">
+                    </div>
+                    <div class="flex-container">
+                        <label class="flex-child" for="minus-z">-Z:</label>
+                        <input class="flex-child" type="text" id="minus-z" placeholder="Enter comma-separated coordinates">
+                    </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+    <script>
+        function updateSettings(settings) {
+            document.getElementById("ip").value = settings["camera_ip"]
+            document.getElementById("username").value = settings["camera_username"]
+            document.getElementById("password").value = settings["camera_password"]
+            document.getElementById("image-order").value = settings["order"].join(",")
+            document.getElementById("resolution").value = settings["image_size"].join(",")
+            document.getElementById("crop-x").value = settings["crop_x"]
+            document.getElementById("crop-y").value = settings["crop_y"]
+            document.getElementById("pattern-x").value = settings["pattern_size"][0]
+            document.getElementById("pattern-y").value = settings["pattern_size"][1]
+            document.getElementById("focal-length").value = settings["focal_length"]
+            document.getElementById("plus-x").value = settings["+x"].join(',')
+            document.getElementById("minus-x").value = settings["-x"].join(',')
+            document.getElementById("plus-z").value = settings["+z"].join(',')
+            document.getElementById("minus-z").value = settings["-z"].join(',')
+        }
+
+        // Display large image on hover
+        const imageElems = Object.values(document.getElementsByClassName('camera-img'));
+        imageElems.forEach(link => {
+            link.addEventListener('mouseover', (event) => {
+                event.preventDefault()
+                document.getElementById('largeImageImage').style.display = 'block';
+                document.getElementById('largeImageImage').src = link.src
+            })
+            link.addEventListener('mouseout', (event) => {
+                event.preventDefault()
+                document.getElementById('largeImageImage').style.display = 'none';
+            })
+        })
+
+        function initialize() {
+            $.get("/cgi/settings/get", {}, (response) => {
+                updateSettings(response)
+            })
+        }
+
+        $(document).ready(initialize);
+
+        // Login function
+        login = () => {
+            const ip = document.getElementById('ip').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            $.ajax({
+                url: "/cgi/settings/set",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "camera_ip": ip,
+                    "camera_username": username,
+                    "camera_password": password
+                }),
+                success: (_, __, ___) => {
+                    // After setting login information, try logging in
+
+                    console.log("Trying to login")
+                    $.post({
+                        url: '/cgi/login',
+                        success: (response, status, xhr) => {
+                            alert(response.message)
+                        },
+                        error: (xhr, status, error) => {
+                            if (xhr.status === 400) {
+                                alert("Error: " + xhr.responseJSON.message);
+                            } else {
+                                alert(`An unexpected error occurred: ${xhr.responseJSON.message}`);
+                            }
+                        }
+                    });
+
+                },
+                error: (xhr, status, error) => {
+                    if (xhr.status === 400) {
+                        alert("Error: " + xhr.responseJSON.message);
+                    } else {
+                        alert(`An unexpected error occurred: ${xhr.responseJSON.message}`);
+                    }
+                },
+            });
+        }
+
+        // Image retake handler
+        retakePhoto = (imageNumber) => {
+            $.post({
+                url: '/cgi/retake_photo',
+                data: {image_number: imageNumber},
+                success: (response, status, xhr) => {
+                    alert(response.message)
+                    document.getElementById(`img-${imageNumber}`).src = `/static/capture/${response.timestamp}/${imageNumber}.jpg?${+ new Date().getTime()}`
+                },
+                error: (xhr, status, error) => {
+                    if (xhr.status === 400) {
+                        alert("Error: " + xhr.responseJSON.message);
+                    } else {
+                        alert(`An unexpected error occurred: ${xhr.responseJSON.message}`);
+                    }
+                }
+            });
+        }
+
+        // Image redetect handler
+        redetectPhoto = (imageNumber) => {
+            $.post({
+                url: '/cgi/redetect_chessboard',
+                data: {image_number: imageNumber},
+                success: (response, status, xhr) => {
+                    alert("Detected images: " + response.detected_images)
+                    document.getElementById(`img-${imageNumber}`).src = `/static/capture/${response.timestamp}/${imageNumber}.jpg?${+ new Date().getTime()}`
+                    response.detected_images.slice(1,-1).split(", ").forEach(i => document.getElementById(`txt-${i}`).class = "flex-child-detected-text")
+                },
+                error: (xhr, status, error) => {
+                    if (xhr.status === 400) {
+                        alert("Error: " + xhr.responseJSON.message);
+                    } else {
+                        alert(`An unexpected error occurred: ${xhr.responseJSON.message}`);
+                    }
+                }
+            });
+        }
+
+        // Reload to latest timestamp
+        reload = () => {
+            $.get({
+                url: '/cgi/status',
+                success: (response, status, xhr) => {
+                    for (let i = 0; i < 16; i++) {
+                         document.getElementById(`img-${i}`).src = ((response.timestamp != null) ? `/static/capture/${response.timestamp}/${i}.jpg?${new Date().getTime()}` : '/static/noimage.png')
+                         document.getElementById(`txt-${i}`).className = ((response.detected_images[i]) ? 'flex-child-detected-text' : 'flex-child-text');
+                    }
+                },
+                error: (xhr, status, error) => {
+                    if (xhr.status === 400) {
+                        alert("Error: " + xhr.responseJSON.message);
+                    } else {
+                        alert(`An unexpected error occurred: ${xhr.responseJSON.message}`);
+                    }
+                }
+            });
+        }
+
+        // Take all photos in order
+        takeAllPhotos = () => {
+            $.post({
+                url: '/cgi/photos_in_order',
+                success: (response, status, xhr) => {
+                    alert(response.message)
+                    for (let i = 0; i < 16; i++) {
+                         document.getElementById(`txt-${i}`).className = "flex-child-text"
+                         document.getElementById(`img-${i}`).src = `/static/capture/${response.timestamp}/${i}.jpg?${+ new Date().getTime()}`
+                    }
+                },
+                error: (xhr, status, error) => {
+                    if (xhr.status === 400) {
+                        alert("Error: " + xhr.responseJSON.message);
+                    } else {
+                        alert(`An unexpected error occurred: ${xhr.responseJSON.message}`);
+                    }
+                }
+            });
+        }
+
+        // Detect all photos
+        detectAllChessboards = () => {
+            $.post({
+                url: '/cgi/detect_chessboards',
+                success: (response, status, xhr) => {
+                    alert("Detected images: " + response.detected_images)
+                    response.detected_images.slice(1,-1).split(", ").forEach(i => {
+                        document.getElementById(`txt-${i}`).className = "flex-child-detected-text"
+                        document.getElementById(`img-${i}`).src = `/static/capture/${response.timestamp}/${i}.jpg?${+ new Date().getTime()}`
+                    })
+                },
+                error: (xhr, status, error) => {
+                    if (xhr.status === 400) {
+                        alert("Error: " + xhr.responseJSON.message);
+                    } else {
+                        alert(`An unexpected error occurred: ${xhr.responseJSON.message}`);
+                    }
+                }
+            });
+        }
+
+        // Calibration handler
+        calibrate = () => {
+            $.ajax({
+                url: "/cgi/calibrate",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    image_numbers: document.getElementById("calibrate-image-numbers").value,
+                    side: document.getElementById("calibrate-side-dropdown").value
+                }),
+                success: (response, status, xhr) => {
+                    alert(`success: see file: ${xhr.responseJSON.file}`)
+                },
+                error: (xhr, status, error) => {
+                    if (xhr.status === 400) {
+                        alert("Error: " + xhr.responseJSON.message);
+                    } else {
+                        alert(`An unexpected error occurred: ${xhr.responseJSON.message}`);
+                    }
+                }
+            });
+        }
+
+        // Save settings
+        saveSettings = () => {
+            $.ajax({
+                url: "/cgi/settings/set",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "order": document.getElementById("image-order").value.split(',').map(function(item) {return parseInt(item, 10);}),
+                    "image_size": document.getElementById("resolution").value.split(',').map(function(item) {return parseInt(item, 10);}),
+                    "crop_x": parseFloat(document.getElementById("crop-x").value),
+                    "crop_y": parseFloat(document.getElementById("crop-y").value),
+                    "pattern_size": [parseInt(document.getElementById("pattern-x").value), parseInt(document.getElementById("pattern-y").value)],
+                    "focal_length": parseFloat(document.getElementById("focal-length").value),
+                    "tensor_name": document.getElementById("tensor-dropdown").value,
+                    "+x": document.getElementById("plus-x").value.split(',').map(function(item) {return parseFloat(item);}),
+                    "-x": document.getElementById("minus-x").value.split(',').map(function(item) {return parseFloat(item);}),
+                    "+z": document.getElementById("plus-z").value.split(',').map(function(item) {return parseFloat(item);}),
+                    "-z": document.getElementById("minus-z").value.split(',').map(function(item) {return parseFloat(item);}),
+                }),
+                success: (response, status, xhr) => {
+                    updateSettings(response)
+                    alert("successfully set settings")
+                },
+                error: (xhr, status, error) => {
+                    if (xhr.status === 400) {
+                        alert("Error: " + xhr.responseJSON.message);
+                    } else {
+                        alert(`An unexpected error occurred: ${xhr.responseJSON.message}`);
+                    }
+                }
+            });
+        }
+
+        // Reset settings
+        resetSettings = () => {
+            $.post({
+                url: '/cgi/settings/reset',
+                success: (response, status, xhr) => {
+                    updateSettings(response)
+                    alert("successfully reset settings")
+                },
+                error: (xhr, status, error) => {
+                    if (xhr.status === 400) {
+                        alert("Error: " + xhr.responseJSON.message);
+                    } else {
+                        alert(`An unexpected error occurred: ${xhr.responseJSON.message}`);
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

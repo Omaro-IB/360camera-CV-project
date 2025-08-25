@@ -1,0 +1,49 @@
+# NVR login info
+username: admin
+password: 627rocks
+ip: "192.168.1.148" # This is the static IP address for the NVR in the MuLab as of 2024-04-07
+
+# MuLab heartbeat monitor
+sendPulse: true # whether to send a pulse to the MuLab's heartbeat monitor server
+heartbeatURL: "https://pulse.caslab.queensu.ca/pulse" # URL to send the pulse to
+heartbeatPassword: "627rocks!" # do not change this unless someone has changed the password to the heartbeat monitor
+
+savePath: "public/photos" # relative to [project root]/app
+
+captureTimes: [] # example: ["08:00:00", "12:00:00", "16:00:00"] to take a photo at 8am, 12pm, and 4pm. THIS IS NOT YET IMPLEMENTED.
+captureInterval: 0d 0h 0m 10s # example: 0d 0h 30m 0s to take a photo every 30 minutes
+maxUpTime: 0d 0h 0m 35s # example: 7d 0h 0m 0s to run for 1 week before shutting down
+
+cameras:
+  - channel: 0 # channel on the NVR
+    label: camera0 # label for the camera, e.g. "Plant 1 Top Right". Used to organize and name photos in the filesystem.
+  - channel: 1
+    label: camera1
+  - channel: 2
+    label: camera2
+  - channel: 3
+    label: camera3
+  - channel: 4
+    label: camera4
+  - channel: 5
+    label: camera5
+  - channel: 6
+    label: camera6
+  - channel: 7
+    label: camera7
+  - channel: 8
+    label: camera8
+  - channel: 9
+    label: camera9
+  - channel: 10
+    label: camera10
+  - channel: 11
+    label: camera11
+  - channel: 12
+    label: camera12
+  - channel: 13
+    label: camera13
+  - channel: 14
+    label: camera14
+  - channel: 15
+    label: camera15

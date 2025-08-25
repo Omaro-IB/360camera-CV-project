@@ -1,0 +1,8 @@
+.idea
+*.old
+__pycache__
+photoscheduler
+temp
+front/static/capture
+calibration/training_images/*
+*.pickle
